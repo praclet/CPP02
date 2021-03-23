@@ -6,7 +6,7 @@
 /*   By: praclet <praclet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:47:40 by praclet           #+#    #+#             */
-/*   Updated: 2021/03/22 15:54:15 by praclet          ###   ########lyon.fr   */
+/*   Updated: 2021/03/23 14:07:34 by praclet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ class Fixed
 		float toFloat(void) const;
 };
 
-ostream & operator << (ostream & os, Fixed const & f);
+std::ostream & operator << (std::ostream & os, Fixed const & f);
 
 #endif

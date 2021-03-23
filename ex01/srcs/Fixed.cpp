@@ -6,7 +6,7 @@
 /*   By: praclet <praclet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:55:32 by praclet           #+#    #+#             */
-/*   Updated: 2021/03/22 15:54:13 by praclet          ###   ########lyon.fr   */
+/*   Updated: 2021/03/23 14:08:08 by praclet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,21 @@ Fixed::~Fixed()
 	std::cout << "Destructor called" << std::endl;
 }
 
-Fixed::Fixed(int const i)
+Fixed::Fixed(int const value)
 {
+	std::cout << "Int constructor called" << std::endl;
+	_value = value << fracBitsNb;
 }
 
-Fixed::Fixed(float const f)
+Fixed::Fixed(float const value)
 {
+	float	tmp;
+
+	std::cout << "Float constructor called" << std::endl;
+	tmp = 1;
+	for (int i = 0;i < fracBitsNb;i++)
+		tmp *= 2;
+	_value = value * tmp;
 }
 
 Fixed & Fixed::operator = (Fixed const & src)
@@ -57,13 +66,20 @@ void Fixed::setRawBits(int const raw)
 
 int Fixed::toInt(void) const
 {
+	return (_value >> fracBitsNb);
 }
 
 float Fixed::toFloat(void) const
 {
+	float	tmp;
+
+	tmp = 1;
+	for (int i = 0;i < fracBitsNb;i++)
+		tmp *= 2;
+	return ((float) _value / tmp);
 }
 
-ostream & operator << (ostream & os, Fixed const & f)
+std::ostream & operator << (std::ostream & os, Fixed const & f)
 {
 	os << f.toFloat();
 	return (os);
