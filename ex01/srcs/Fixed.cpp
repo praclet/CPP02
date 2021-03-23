@@ -6,7 +6,7 @@
 /*   By: praclet <praclet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:55:32 by praclet           #+#    #+#             */
-/*   Updated: 2021/03/23 15:08:40 by praclet          ###   ########lyon.fr   */
+/*   Updated: 2021/03/23 16:19:52 by praclet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,13 @@ Fixed::~Fixed()
 	std::cout << "Destructor called" << std::endl;
 }
 
-Fixed::Fixed(int const value)
+Fixed::Fixed(int const value) : _value(value << fracBitsNb)
 {
 	std::cout << "Int constructor called" << std::endl;
-	_value = value << fracBitsNb;
 }
 
-Fixed::Fixed(float const value)
+Fixed::Fixed(float const value) : _value((int)roundf(value * (1 << fracBitsNb)))
 {
-	_value = (int)roundf(value * (1 << fracBitsNb));
 }
 
 Fixed & Fixed::operator = (Fixed const & src)
