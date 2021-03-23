@@ -6,11 +6,12 @@
 /*   By: praclet <praclet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:55:32 by praclet           #+#    #+#             */
-/*   Updated: 2021/03/23 14:16:45 by praclet          ###   ########lyon.fr   */
+/*   Updated: 2021/03/23 15:08:40 by praclet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <cmath>
 #include "Fixed.hpp"
 
 Fixed::Fixed() : _value(0)
@@ -36,13 +37,7 @@ Fixed::Fixed(int const value)
 
 Fixed::Fixed(float const value)
 {
-	float	tmp;
-
-	std::cout << "Float constructor called" << std::endl;
-	tmp = 1;
-	for (int i = 0;i < fracBitsNb;i++)
-		tmp *= 2;
-	_value = value * tmp;
+	_value = (int)roundf(value * (1 << fracBitsNb));
 }
 
 Fixed & Fixed::operator = (Fixed const & src)
@@ -71,12 +66,7 @@ int Fixed::toInt(void) const
 
 float Fixed::toFloat(void) const
 {
-	float	tmp;
-
-	tmp = 1;
-	for (int i = 0;i < fracBitsNb;i++)
-		tmp *= 2;
-	return (_value / tmp);
+	return ((float)_value / (1 << fracBitsNb));
 }
 
 std::ostream & operator << (std::ostream & os, Fixed const & f)
