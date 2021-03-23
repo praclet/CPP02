@@ -6,7 +6,7 @@
 /*   By: praclet <praclet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:55:32 by praclet           #+#    #+#             */
-/*   Updated: 2021/03/23 14:08:08 by praclet          ###   ########lyon.fr   */
+/*   Updated: 2021/03/23 14:16:45 by praclet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ float Fixed::toFloat(void) const
 	tmp = 1;
 	for (int i = 0;i < fracBitsNb;i++)
 		tmp *= 2;
-	return ((float) _value / tmp);
+	return (_value / tmp);
 }
 
 std::ostream & operator << (std::ostream & os, Fixed const & f)
